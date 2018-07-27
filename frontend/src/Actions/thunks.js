@@ -1,7 +1,8 @@
 import request from "axios"
 import { calcIsLoading, calcFetchSuccess, calcHasErrored, updateForm} from './actions'
- // action creator for API call
 
+
+// action creator for API call
 
 export function fetchMonthlyData(queryData) {
 	return (dispatch) => {
