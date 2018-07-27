@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import CurrencyInput from "./CurrencyInput"
 import SliderInput from "./SliderInput"
 import DisplayGraph from "./DisplayGraph"
+import RadioInput from "./RadioInput"
 import "./InputGraphSection.css"
 import PropTypes from 'prop-types';
 
@@ -22,7 +23,7 @@ export default class InputGraphSection extends Component {
 
   render() {
     const { data, formData } = this.props;
-    const { initialDeposit, monthlyDeposit, interestRate } = formData;
+    const { initialDeposit, monthlyDeposit, interestRate, interestPeriod } = formData;
 
     return (
       <div>
@@ -34,9 +35,14 @@ export default class InputGraphSection extends Component {
           <CurrencyInput fieldId='monthlyDeposit' defaultValue={monthlyDeposit} onFieldChange={this.onFieldChange} />
 
           <p className="input-label">
-            How much interest will you earn per year?
+            How much interest will you earn per period?
           </p>
           <SliderInput fieldId='interestRate' defaultValue={interestRate} onFieldChange={this.onFieldChange}/>
+          <p className="input-label">
+            How often is the interest rate applied?
+          </p>
+          <RadioInput fieldId='interestPeriod' defaultValue={interestPeriod} onFieldChange={this.onFieldChange}/>
+
         </div>
         <div className="financial-display">
           {/*We have included some sample data here, you will need to replace this
