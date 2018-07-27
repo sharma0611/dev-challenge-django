@@ -10,14 +10,14 @@ def calculate(request):
     monthly_deposit = params.get('monthlyDeposit', None)
     initial_deposit = params.get('initialDeposit', None)
     interest_rate = params.get('interestRate', None) 
+    interest_period = params.get('interestPeriod', None) 
     if interest_rate:
         interest_rate = 1 + float(interest_rate) / 100
     result = []
 
-    apply_interest = 6 #every 6 mts
     curr_balance = initial_deposit
     for curr_month in range(50*12):
-        if curr_month % apply_interest == 0 and curr_month != 0: # interest applied at the start of the month
+        if curr_month % interest_period == 0 and curr_month != 0: # interest applied at the start of the month
             curr_balance = curr_balance * interest_rate
 
         month_num = curr_month + 1
@@ -27,7 +27,7 @@ def calculate(request):
         result.append(curr_result)
         curr_balance += monthly_deposit #deposit made at the end of the month
 
-    #if savings_amount is None or interest_rate is None:
-    #    return HttpResponseBadRequest('Required parameters are not provided')
+    if monthly_deposit is None or interest_rate is None or initial_deposit is None or interest_period is None:
+        return HttpResponseBadRequest('Required parameters are not provided')
 
     return JsonResponse({'result': result})
