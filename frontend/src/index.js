@@ -8,25 +8,18 @@ import configureStore from './Store/store'
 
 const formData = {'initialDeposit': 1,
                   'monthlyDeposit': 1,
-                  'interestRate': 4}
+                  'interestRate': 0.25,
+                  'interestPeriod': 12}
 
 const initialState = {
 	'monthlyData' : [
               {
                 month: 1,
-                amount: 500
+                amount: 0
               },
               {
-                month: 2,
-                amount: 700
-              },
-              {
-                month: 3,
-                amount: 1000
-              },
-              {
-                month: 4,
-                amount: 1500
+                month: 510,
+                amount: 600
               }
             ],
   'hasErrored': false,
