@@ -15,6 +15,7 @@ export default class SliderInput extends Component {
 	handleChange(e) {
 		const value = e.target.value
 		this.setState({value})
+		this.props.onFieldChange(this.props.fieldId, parseFloat(value));
 	}
 
 	render() {
@@ -25,7 +26,7 @@ export default class SliderInput extends Component {
 				<p>{value}%</p>
 				<input type="range"
 					value={value}
-					min={0}
+					min={0.25}
 					max={10}
 					step={0.25}
 					onChange={this.handleChange.bind(this)}/>

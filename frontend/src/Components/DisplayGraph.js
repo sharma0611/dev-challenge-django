@@ -5,10 +5,10 @@ import { VictoryLine, VictoryChart } from 'victory'
 export default class DisplayGraph extends Component {
 
 	render() {
-		const { data } = this.props;
+		const { data }  = this.props;
 
 		const baseProps = {
-  		width: 450,
+  		width: 400,
   		height: 300,
   		padding: 50,
   		colorScale: ["#48C8FF", "#00b2ff", "#038AD0", "#006C9B"]

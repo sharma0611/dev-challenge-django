@@ -3,8 +3,13 @@ import PropTypes from 'prop-types'
 import './CurrencyInput.css'
 
 export default class CurrencyInput extends Component {
+  static propTypes = {
+    onFieldChange: PropTypes.func,
+    defaultValue: PropTypes.number,
+  }
+
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.state = {
 			hasFocus: false,
@@ -13,8 +18,9 @@ export default class CurrencyInput extends Component {
 	}
 
 	handleChange(e) {
-		const value = e.target.value
-		this.setState({value})
+		const value = e.target.value;
+		this.setState({value});
+		this.props.onFieldChange(this.props.fieldId, parseFloat(value));
 	}
 
 	handleFocus(e) {
@@ -37,8 +43,4 @@ export default class CurrencyInput extends Component {
 			</div>
 		)
 	}
-}
-
-CurrencyInput.propTypes = {
-	defaultValue: PropTypes.number
 }
