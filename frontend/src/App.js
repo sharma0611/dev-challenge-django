@@ -1,38 +1,80 @@
 import React, { Component } from "react"
-import { calculate } from "./API"
 import InputGraphSection from './Components/InputGraphSection'
 import "./App.css"
 
-class App extends Component {
-	state = {
-		loading: true,
-		result: null
-	}
+import { connect } from 'react-redux';
+import { updateFieldandData } from './Actions/thunks'
 
-	componentDidMount() {
-		calculate(1000, 1)
-			.then(r => this.setState({
-            	loading: false,
-                result: r.data.result
-			}))
+
+class App extends Component {
+
+	constructor(props) {
+		super(props);
+		this.onFormChange = this.onFormChange.bind(this);
+	}
+	
+	onFormChange(fieldId, fieldValue) {
+		const { formData } = this.props;
+		this.props.updateForm(formData, fieldId, fieldValue);
 	}
 
 	render() {
-	    const {loading, result} = this.state
+	    const {monthlyData, hasErrored, formData } = this.props;
+	    var data = monthlyData;
+
+	    if (hasErrored) {
+	    	// show flat line on error
+	    	data = [
+              {
+                month: 1,
+                amount: 0
+              },
+              {
+                month: 2,
+                amount: 0
+              },
+              {
+                month: 3,
+                amount: 0
+              },
+              {
+                month: 4,
+                amount: 0
+              }
+            ];
+        }
 
 		return (
 			<div className="App">
 				<header className="App-header">
 					<h1 className="App-title">Finimize dev challenge</h1>
 				</header>
-                    {loading ?
-                        'Loading...'
-                    :
-					 	<InputGraphSection {...{result}}/>
+                    {
+					 	<InputGraphSection 
+					 	{...{data}} 
+					 	{...{formData}} 
+					 	onFormChange={this.onFormChange}
+					 	/>
                     }
 			</div>
 		)
 	}
 }
 
-export default App
+const mapStateToProps = (state) => {
+    return {
+        monthlyData: state.monthlyData,
+        hasErrored: state.hasErrored,
+        isLoading: state.isLoading,
+        formData: state.formData
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateForm: (query, fieldId, fieldValue) => dispatch(updateFieldandData(query, fieldId, fieldValue))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
