@@ -10,7 +10,6 @@ export function updateForm(formData) {
 // error action
 
 export function calcHasErrored(bool) {
-	console.log(bool);
 	return {
 		type: 'HAS_ERRORED',
 		hasErrored: bool
