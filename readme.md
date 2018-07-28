@@ -9,13 +9,13 @@ python manage.py migrate && python manage.py test
 
 This creates a temporary in-memory database for unit testing with Django REST & runs the tests described in `interest_calculator/tests.py`
 
-* Testing new React Component
+* Testing React Components
 
 ```sh
 yarn test
 ```
 
-This will run Jest + Enzyme tests for the radio button component found at `frontend/.../Components/__tests__`
+This will run Jest + Enzyme tests found at `frontend/.../Components/__tests__`
 
 ## Change Log / Notes
 
