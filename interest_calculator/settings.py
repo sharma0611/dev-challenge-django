@@ -68,6 +68,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'interest_calculator.wsgi.application'
 
+#rest framework settings to allow DRF to have unauth user and no DB for users
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'UNAUTHENTICATED_USER': None,
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
