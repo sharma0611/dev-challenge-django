@@ -1,5 +1,43 @@
 # Finimize dev challenge
 
+##  Testing
+* Testing the Django API
+
+```sh
+python manage.py migrate && python manage.py test
+```
+
+This creates a temporary in-memory database for unit testing with Django REST & runs the tests described in `interest_calculator/tests.py`
+
+* Testing new React Component
+
+```sh
+yarn test
+```
+
+This will run Jest + Enzyme tests for the radio button component found at `frontend/.../Components/__tests__`
+
+## Change Log / Notes
+
+### Front End
+
+* Added Redux + Thunk for state management + API calls
+* Added reducers, actions, thunks
+* App.js is the only connected component to redux
+* App passes down callback to child components so on form value change, we call a thunk to dispatch appropriate actions to update values + call API and get new graph data
+* Added radio component that contains Annual, Quarterly, Monthly options
+* Added basic tests for radio component 
+* No UI changes other than radio component
+* Next Steps: Should split radio component into map function + one reusable component and no references to "Annually, Monthly, etc." for abstraction + reusability 
+
+### Back End
+
+* Replaced Django API with Django REST API to support validation with serializer and return well-informed errors out of the box
+* Added basic logic to calculate and return monthly data
+* Added tests 
+* Next Steps: For production purposes, we should use CORS headers between django server and react server. Since this is designed to be a POST request, we should always have CSRF token in case this API is ever changed to allow updates to server state. 
+
+
 ## Python & Django setup
 
 * Install `python3` via brew
