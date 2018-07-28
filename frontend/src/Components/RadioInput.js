@@ -18,7 +18,7 @@ export default class CurrencyInput extends Component {
 	}
 
 	handleChange(e) {
-		const value = parseInt(e.target.value);
+		const value = parseInt(e.target.value, 10);
 		this.setState({value});
 		this.props.onFieldChange(this.props.fieldId, value);
 	}
