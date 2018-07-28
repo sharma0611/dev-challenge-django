@@ -22,7 +22,7 @@ def calculate(request):
 
         month_num = curr_month + 1
         curr_result = {'month' : month_num,
-                'amount': curr_balance}
+                'amount': round(curr_balance, 2)}
 
         result.append(curr_result)
         curr_balance += monthly_deposit #deposit made at the end of the month
